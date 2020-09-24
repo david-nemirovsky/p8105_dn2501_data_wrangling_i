@@ -6,3 +6,49 @@ output: github_document
 ```{r setup}
 library(tidyverse)
 ```
+
+## Load in the FAS litters dataset
+
+```{r}
+litters_df = read_csv("./data/FAS_litters.csv")
+litters_df = janitor::clean_names(litters_df)
+```
+
+## `Select`
+
+```{r}
+select(litters_df, group, litter_number)
+```
+
+```{r}
+select(litters_df, gd0_weight:gd_of_birth)
+```
+
+```{r}
+select(litters_df, -litter_number)
+```
+
+Renaming columns
+
+```{r}
+select(litters_df, GROUP = group, LITTer_NUmBEr = litter_number)
+```
+
+```{r}
+rename(litters_df, GROUP = group, LITTer_NUmBEr = litter_number)
+```
+
+Select helpers
+
+```{r}
+select(litters_df, starts_with("gd"))
+```
+
+```{r}
+select(litters_df, litter_number, everything())
+```
+
+```{r}
+relocate(litters_df, litter_number)
+```
+
