@@ -92,3 +92,10 @@ mutate(
   group = str_to_lower(group))
 ```
 
+## `Arrange`
+
+```{r}
+arrange(litters_df, pups_born_alive)
+arrange(litters_df, pups_born_alive, gd0_weight)
+```
+
