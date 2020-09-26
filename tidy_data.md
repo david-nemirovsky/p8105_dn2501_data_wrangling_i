@@ -54,3 +54,32 @@ pulse_data =
   relocate(id, visit) %>% 
   mutate(visit = recode(visit, "bl" = "00m"))
 ```
+
+## pivot\_wider
+
+Make up some data
+
+``` r
+analysis_result = 
+  tibble(
+    group = c("treatment","treatment", "placebo", "placebo"),
+    time = c("pre", "pre", "post", "post"),
+    mean = c(4, 8, 3.5, 4)
+  )
+analysis_result  %>%  
+  pivot_wider(
+    names_from = "time",
+    values_from = "mean"
+  )
+```
+
+    ## Warning: Values are not uniquely identified; output will contain list-cols.
+    ## * Use `values_fn = list` to suppress this warning.
+    ## * Use `values_fn = length` to identify where the duplicates arise
+    ## * Use `values_fn = {summary_fun}` to summarise duplicates
+
+    ## # A tibble: 2 x 3
+    ##   group     pre       post     
+    ##   <chr>     <list>    <list>   
+    ## 1 treatment <dbl [2]> <NULL>   
+    ## 2 placebo   <NULL>    <dbl [2]>
